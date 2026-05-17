@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Stay | Aurelia Grand Hotel</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c8a75a',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-dark text-white">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <h1 class="text-2xl font-bold text-primary">
+      Aurelia <span class="text-white">Grand</span>
+    </h1>
+
+    <a href="index.html"
+       class="border border-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-dark transition">
+      Back to Home
+    </a>
+  </div>
+</nav>
+
+<!-- ================= FORM ================= -->
+<section class="pt-32 pb-24">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <div class="bg-slate-950 rounded-2xl shadow-2xl p-10">
+
+      <h2 class="text-3xl font-bold mb-4 text-center">
+        Book Your <span class="text-primary">Luxury Stay</span>
+      </h2>
+
+      <p class="text-gray-400 text-center mb-10">
+        Fill in the details below and our team will contact you on WhatsApp.
+      </p>
+
+      <form onsubmit="sendWhatsApp(event)" class="space-y-6">
+
+        <input id="name" type="text" required
+          placeholder="Full Name"
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none">
+
+        <input id="phone" type="tel" required
+          placeholder="Phone Number"
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none">
+
+        <input id="checkin" type="date" required
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none">
+
+        <input id="checkout" type="date" required
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none">
+
+        <select id="room" required
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none">
+          <option value="">Select Room Type</option>
+          <option>Deluxe Room</option>
+          <option>Premium Room</option>
+          <option>Executive Suite</option>
+          <option>Royal Suite</option>
+          <option>Presidential Suite</option>
+        </select>
+
+        <textarea id="message" rows="4"
+          placeholder="Any special requests?"
+          class="w-full bg-dark border border-white/10 px-5 py-3 rounded-lg outline-none"></textarea>
+
+        <button type="submit"
+          class="w-full bg-primary text-dark py-4 rounded-xl font-semibold text-lg
+                 hover:scale-105 transition">
+          Book on WhatsApp
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  function sendWhatsApp(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const checkin = document.getElementById("checkin").value;
+    const checkout = document.getElementById("checkout").value;
+    const room = document.getElementById("room").value;
+    const message = document.getElementById("message").value;
+
+    const text = `New Booking Request:%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Check-in: ${checkin}%0A
+Check-out: ${checkout}%0A
+Room: ${room}%0A
+Message: ${message}`;
+
+    window.open(`https://wa.me/919326885033?text=${text}`, "_blank");
+  }
+</script>
+
+</body>
+</html>

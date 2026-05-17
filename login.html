@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Aurelia Grand Hotel</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c8a75a',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-dark text-white min-h-screen flex items-center justify-center px-4">
+
+<!-- CONTAINER -->
+<div class="w-full max-w-md bg-slate-950 rounded-2xl shadow-xl p-8">
+
+  <!-- TITLE -->
+  <h2 class="text-3xl font-bold text-center mb-2">
+    Aurelia <span class="text-primary">Grand</span>
+  </h2>
+  <p class="text-center text-gray-400 mb-8">
+    Login to manage your bookings
+  </p>
+
+  <!-- LOGIN FORM -->
+  <form id="loginForm" class="space-y-5" onsubmit="loginUser(event)">
+
+    <div>
+      <label class="text-sm text-gray-400">Email</label>
+      <input type="email" required
+        class="w-full mt-1 px-4 py-3 rounded-lg bg-dark border border-white/10
+               focus:outline-none focus:border-primary">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-400">Password</label>
+      <input type="password" required
+        class="w-full mt-1 px-4 py-3 rounded-lg bg-dark border border-white/10
+               focus:outline-none focus:border-primary">
+    </div>
+
+    <button
+      class="w-full bg-primary text-dark py-3 rounded-lg font-semibold
+             hover:opacity-90 transition">
+      Login
+    </button>
+
+  </form>
+
+  <!-- SIGNUP FORM -->
+  <form id="signupForm" class="space-y-5 hidden mt-6" onsubmit="signupUser(event)">
+
+    <div>
+      <label class="text-sm text-gray-400">Full Name</label>
+      <input type="text" required
+        class="w-full mt-1 px-4 py-3 rounded-lg bg-dark border border-white/10
+               focus:outline-none focus:border-primary">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-400">Email</label>
+      <input type="email" required
+        class="w-full mt-1 px-4 py-3 rounded-lg bg-dark border border-white/10
+               focus:outline-none focus:border-primary">
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-400">Password</label>
+      <input type="password" required
+        class="w-full mt-1 px-4 py-3 rounded-lg bg-dark border border-white/10
+               focus:outline-none focus:border-primary">
+    </div>
+
+    <button
+      class="w-full bg-primary text-dark py-3 rounded-lg font-semibold
+             hover:opacity-90 transition">
+      Create Account
+    </button>
+
+  </form>
+
+  <!-- TOGGLE -->
+  <p class="text-center text-gray-400 mt-6 text-sm">
+    <span id="toggleText">Don’t have an account?</span>
+    <button onclick="toggleForm()" class="text-primary font-semibold ml-1">
+      Sign Up
+    </button>
+  </p>
+
+</div>
+
+<script>
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  const toggleText = document.getElementById("toggleText");
+
+  function toggleForm() {
+    loginForm.classList.toggle("hidden");
+    signupForm.classList.toggle("hidden");
+
+    toggleText.textContent =
+      loginForm.classList.contains("hidden")
+        ? "Already have an account?"
+        : "Don’t have an account?";
+  }
+
+  function loginUser(e) {
+    e.preventDefault();
+    localStorage.setItem("hotelUser", "true");
+    window.location.href = "index.html";
+  }
+
+  function signupUser(e) {
+    e.preventDefault();
+    localStorage.setItem("hotelUser", "true");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
